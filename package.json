@@ -1,0 +1,22 @@
+{
+  "name": "sauce-tunnel",
+  "version": "1.0.0",
+  "description": "A wrapper around the Saucelabs tunnel jar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmreidy/sauce-tunnel"
+  },
+  "keywords": [
+    "Saucelabs"
+  ],
+  "author": "Justin Reidy <jmreidy@rzrsharp.net>",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "~0.6.0-1",
+    "request": "~2.21.0"
+  }
+}

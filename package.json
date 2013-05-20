@@ -1,7 +1,7 @@
 {
   "name": "sauce-tunnel",
   "version": "1.0.0",
-  "description": "A wrapper around the Saucelabs tunnel jar",
+  "description": "A wrapper around the Sauce Labs tunnel jar",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,10 @@
   "keywords": [
     "Saucelabs"
   ],
-  "author": "Justin Reidy <jmreidy@rzrsharp.net>",
+  "authors": [
+    "Parashuram <code@nparashuram.com>",
+    "Justin Reidy <jmreidy@rzrsharp.net>"
+  ],
   "license": "MIT",
   "dependencies": {
     "colors": "~0.6.0-1",

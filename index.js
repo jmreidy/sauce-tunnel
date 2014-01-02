@@ -9,13 +9,14 @@ var EventEmitter = require('events').EventEmitter;
 
 module.exports = SauceTunnel;
 
-function SauceTunnel(user, key, identifier, tunneled) {
+function SauceTunnel(user, key, identifier, tunneled, extraFlags) {
   EventEmitter.call(this);
   this.user = user;
   this.key = key;
   this.identifier = identifier || 'Tunnel'+new Date().getTime();
   this.tunneled = tunneled;
   this.baseUrl = ["https://", this.user, ':', this.key, '@saucelabs.com', '/rest/v1/', this.user].join("");
+  this.extraFlags = extraFlags;
 }
 
 util.inherits(SauceTunnel, EventEmitter);
@@ -25,6 +26,9 @@ SauceTunnel.prototype.openTunnel = function(callback) {
   var args = ["-jar", __dirname + "/vendor/Sauce-Connect.jar", this.user, this.key];
   if (this.identifier) {
     args.push("-i", this.identifier);
+  }
+  if (this.extraFlags) {
+    args = args.concat(this.extraFlags);
   }
   this.proc = proc.spawn('java', args);
   var calledBack = false;

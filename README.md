@@ -23,9 +23,9 @@ var tunnel = new SauceTunnel(SAUCE_USERNAME, SAUCE_ACCESSKEY, tunnelIdentifier, 
 1. `SAUCE_USERNAME` and `SAUCE_ACCESSKEY` are the username and the accesskey for saucelabs. They are usually set as environment variables (specially in continuous integration tools like [travis](http://travis-ci.org) ) 
 2. The `tunnelIdentifier` is a unique identifier for the tunnel. It is optional and is automatically generated when not specified. Note that the tunnel identifier may have to be passed in with the browsers object as a desired capability to enable traffic to use the tunnel. More details [here](https://saucelabs.com/docs/additional-config#tunnel-identifier)
 3. The `tunneled` attribute is a boolean value to indicate if the tunnel is to be created or not. This value can be set to `false` to mock a tunnel creation if the site tested is publically accessible. To create a tunnel, set this value to `true`.
-4. The ``extraFlags`` attribute is an optioonal array of options flags (see [here](https://saucelabs.com/docs/connect)). Example: ``['--debug', '--direct-domains', 'www.google.com']``
+4. The ``extraFlags`` attribute is an array of options flags (see [here](https://saucelabs.com/docs/connect)). Example: ``['--debug', '--direct-domains', 'www.google.com']``. It is optional.
 
-One the tunnel is initialized, start the tunnel using it with the following command. 
+Once the tunnel is initialized, start it with the following command.
 
 ```
 tunnel.start(function(status){

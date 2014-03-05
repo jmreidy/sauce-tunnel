@@ -4,8 +4,15 @@ var request = require('request').defaults({jar:false});
 
 /* core */
 var util = require('util');
+var os = require('os');
+var path = require('path');
 var proc = require('child_process');
 var EventEmitter = require('events').EventEmitter;
+var binaries = {
+  'darwin': 'sc',
+  'linux': 'sc',
+  'win32': 'sc.exe'
+};
 
 module.exports = SauceTunnel;
 
@@ -23,14 +30,22 @@ util.inherits(SauceTunnel, EventEmitter);
 
 SauceTunnel.prototype.openTunnel = function(callback) {
   var me = this;
-  var args = ["-jar", __dirname + "/vendor/Sauce-Connect.jar", this.user, this.key];
+  // win32, darwin or linux
+  var platform = os.platform();
+  var executable = binaries[platform];
+  if (!executable) {
+    throw new Error(platform + ' platform is not supported');
+  }
+  var args = ['-u', this.user, '-k', this.key];
   if (this.identifier) {
     args.push("-i", this.identifier);
   }
   if (this.extraFlags) {
     args = args.concat(this.extraFlags);
   }
-  this.proc = proc.spawn('java', args);
+  var cmd = path.join(__dirname, 'vendor', platform, 'bin/', executable);
+  
+  this.proc = proc.spawn(cmd, args);
   var calledBack = false;
 
   this.proc.stdout.on('data', function(d) {
@@ -38,7 +53,7 @@ SauceTunnel.prototype.openTunnel = function(callback) {
     if (typeof data === 'string' && !data.match(/^\[-u,/g)) {
       me.emit('verbose:debug', data.replace(/[\n\r]/g, ''));
     }
-    if (typeof data === 'string' && data.match(/Connected\! You may start your tests/)) {
+    if (typeof data === 'string' && data.match(/Sauce Connect is up, you may start your tests/)) {
       me.emit('verbose:ok', '=> Sauce Labs Tunnel established');
       if (!calledBack) {
         calledBack = true;
@@ -102,9 +117,11 @@ SauceTunnel.prototype.start = function(callback) {
 };
 
 SauceTunnel.prototype.stop = function(callback) {
+  
   if (this.proc) {
     this.proc.kill();
   }
+  
   this.killTunnel(function(err) {
     callback(err);
   });

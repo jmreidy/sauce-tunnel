@@ -1,4 +1,4 @@
-sauce-tunnel
+sauce-tunnel [![NPM version](https://badge.fury.io/js/sauce-tunnel.png)](http://badge.fury.io/js/sauce-tunnel)
 ============
 
 A Node.js wrapper around the Saucelabs tunnel jar.

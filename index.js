@@ -44,9 +44,9 @@ SauceTunnel.prototype.openTunnel = function(callback) {
     args = args.concat(this.extraFlags);
   }
   var cmd = path.join(__dirname, 'vendor', platform, 'bin/', executable);
-  
+
   this.proc = proc.spawn(cmd, args);
-  var calledBack = false;
+  callback.called = false;
 
   this.proc.stdout.on('data', function(d) {
     var data = typeof d !== 'undefined' ? d.toString() : '';
@@ -55,8 +55,8 @@ SauceTunnel.prototype.openTunnel = function(callback) {
     }
     if (typeof data === 'string' && data.match(/Sauce Connect is up, you may start your tests/)) {
       me.emit('verbose:ok', '=> Sauce Labs Tunnel established');
-      if (!calledBack) {
-        calledBack = true;
+      if (!callback.called) {
+        callback.called = true;
         callback(true);
       }
     }
@@ -66,10 +66,11 @@ SauceTunnel.prototype.openTunnel = function(callback) {
     me.emit('log:error', data.toString().replace(/[\n\r]/g, ''));
   });
 
+  var self = this;
   this.proc.on('exit', function(code) {
     me.emit('verbose:ok', 'Sauce Labs Tunnel disconnected ', code);
-    if (!calledBack) {
-      calledBack = true;
+    if (!callback.called) {
+      callback.called = true;
       callback(false);
     }
   });
@@ -117,12 +118,16 @@ SauceTunnel.prototype.start = function(callback) {
 };
 
 SauceTunnel.prototype.stop = function(callback) {
-  
-  if (this.proc) {
-    this.proc.kill();
-  }
-  
-  this.killTunnel(function(err) {
-    callback(err);
-  });
+  var killProc = function (err) {
+    if (this.proc) {
+      this.proc.on('exit', function () {
+        callback(err);
+      });
+      this.proc.kill();
+    }
+    else {
+      callback(err);
+    }
+  }.bind(this);
+  this.killTunnel(killProc);
 };

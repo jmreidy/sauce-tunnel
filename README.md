@@ -68,4 +68,6 @@ tunnels, and tunnel timeouts. (#3)
 ### v2.0
 - Move to new release of Sauce connect (version 4).
 
+### v2.0.1
+- Fixing bug where sauce connect was not properly exiting
 

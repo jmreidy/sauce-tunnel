@@ -48,12 +48,15 @@ SauceTunnel.prototype.openTunnel = function(callback) {
   this.proc = proc.spawn(cmd, args);
   callback.called = false;
 
+  var buf = '';
   this.proc.stdout.on('data', function(d) {
     var data = typeof d !== 'undefined' ? d.toString() : '';
+    buf += data.replace(/[\r\n]/g, '');
+
     if (typeof data === 'string' && !data.match(/^\[-u,/g)) {
       me.emit('verbose:debug', data.replace(/[\n\r]/g, ''));
     }
-    if (typeof data === 'string' && data.match(/Sauce Connect is up, you may start your tests/)) {
+    if (typeof data === 'string' && buf.match(/Sauce Connect is up, you may start your tests/)) {
       me.emit('verbose:ok', '=> Sauce Labs Tunnel established');
       if (!callback.called) {
         callback.called = true;

@@ -71,3 +71,6 @@ tunnels, and tunnel timeouts. (#3)
 ### v2.0.1
 - Fixing bug where sauce connect was not properly exiting
 
+### v2.0.2
+- Fixing issue with flaky tunnel creation recognition on Win
+

@@ -20,9 +20,9 @@ function SauceTunnel(user, key, identifier, tunneled, extraFlags) {
   EventEmitter.call(this);
   this.user = user;
   this.key = key;
-  this.identifier = identifier || 'Tunnel'+new Date().getTime();
+  this.identifier = this.tunnelIdentifier = identifier || 'Tunnel' + new Date().getTime();
   this.tunneled = tunneled;
-  this.baseUrl = ["https://", this.user, ':', this.key, '@saucelabs.com', '/rest/v1/', this.user].join("");
+  this.baseUrl = ['https://', this.user, ':', this.key, '@saucelabs.com', '/rest/v1/', this.user].join('');
   this.extraFlags = extraFlags;
 }
 
@@ -38,7 +38,7 @@ SauceTunnel.prototype.openTunnel = function(callback) {
   }
   var args = ['-u', this.user, '-k', this.key];
   if (this.identifier) {
-    args.push("-i", this.identifier);
+    args.push('-i', this.identifier);
   }
   if (this.extraFlags) {
     args = args.concat(this.extraFlags);
@@ -53,10 +53,14 @@ SauceTunnel.prototype.openTunnel = function(callback) {
     var data = typeof d !== 'undefined' ? d.toString() : '';
     buf += data.replace(/[\r\n]/g, '');
 
-    if (typeof data === 'string' && !data.match(/^\[-u,/g)) {
+    if (!data.match(/^\[-u,/g)) {
       me.emit('verbose:debug', data.replace(/[\n\r]/g, ''));
     }
-    if (typeof data === 'string' && buf.match(/Sauce Connect is up, you may start your tests/)) {
+    if (buf.match(/Sauce Connect is up, you may start your tests/)) {
+      var match = buf.match(/Tunnel ID: (\w+)/);
+      if (match && match[1]) {
+        me.tunnelIdentifier = match[1];
+      }
       me.emit('verbose:ok', '=> Sauce Labs Tunnel established');
       if (!callback.called) {
         callback.called = true;
@@ -69,7 +73,6 @@ SauceTunnel.prototype.openTunnel = function(callback) {
     me.emit('log:error', data.toString().replace(/[\n\r]/g, ''));
   });
 
-  var self = this;
   this.proc.on('exit', function(code) {
     me.emit('verbose:ok', 'Sauce Labs Tunnel disconnected ', code);
     if (!callback.called) {
@@ -95,8 +98,8 @@ SauceTunnel.prototype.killTunnel = function(callback) {
 
   this.emit('verbose:debug', 'Trying to kill tunnel');
   request({
-    method: "DELETE",
-    url: this.baseUrl + "/tunnels/" + this.identifier,
+    method: 'DELETE',
+    url: this.baseUrl + '/tunnels/' + this.tunnelIdentifier,
     json: true
   }, function (err, resp, body) {
     if (!err) {
@@ -114,7 +117,7 @@ SauceTunnel.prototype.start = function(callback) {
   if (!this.tunneled) {
     return callback(true);
   }
-  this.emit('verbose:writeln', "=> Sauce Labs trying to open tunnel".inverse);
+  this.emit('verbose:writeln', '=> Sauce Labs trying to open tunnel'.inverse);
   this.openTunnel(function(status) {
     callback(status);
   });

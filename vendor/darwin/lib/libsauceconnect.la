@@ -17,7 +17,7 @@ old_library='libsauceconnect.a'
 inherited_linker_flags=' '
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/Users/travis/build/saucelabs/libsauceconnect/build/Darwin/openssl/lib /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-675/lib/libevent.la /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-675/lib/libevent_openssl.la /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-675/lib/libcurl.la -lz /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-675/lib/libcompat.la -ldl -lssl -lcrypto'
+dependency_libs=' -L/Users/travis/build/saucelabs/libsauceconnect/build/Darwin/openssl/lib /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-728/lib/libevent.la /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-728/lib/libevent_openssl.la /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-728/lib/libcurl.la -lz /Users/travis/build/saucelabs/libsauceconnect/build/sc-build-728/lib/libcompat.la -ldl -lssl -lcrypto'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/travis/build/saucelabs/libsauceconnect/build/sc-build-675/lib'
+libdir='/Users/travis/build/saucelabs/libsauceconnect/build/sc-build-728/lib'

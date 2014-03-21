@@ -17,7 +17,7 @@ old_library='libsauceconnect.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/home/travis/build/saucelabs/libsauceconnect/build/win32/openssl/lib /home/travis/build/saucelabs/libsauceconnect/build/sc-build-676/lib/libevent.la /home/travis/build/saucelabs/libsauceconnect/build/sc-build-676/lib/libevent_openssl.la /home/travis/build/saucelabs/libsauceconnect/build/sc-build-676/lib/libevent_core.la -lshell32 -ladvapi32 /home/travis/build/saucelabs/libsauceconnect/build/sc-build-676/lib/libcurl.la /home/travis/build/saucelabs/libsauceconnect/build/sc-build-676/lib/libcompat.la -lwinpthread -lssl -lcrypto -ldbghelp -lkernel32 -lgdi32 -lwldap32 -lws2_32'
+dependency_libs=' -L/home/travis/build/saucelabs/libsauceconnect/build/win32/openssl/lib /home/travis/build/saucelabs/libsauceconnect/build/sc-build-776/lib/libevent.la /home/travis/build/saucelabs/libsauceconnect/build/sc-build-776/lib/libevent_openssl.la /home/travis/build/saucelabs/libsauceconnect/build/sc-build-776/lib/libevent_core.la -lshell32 -ladvapi32 /home/travis/build/saucelabs/libsauceconnect/build/sc-build-776/lib/libcurl.la /home/travis/build/saucelabs/libsauceconnect/build/sc-build-776/lib/libcompat.la -lwinpthread -lssl -lcrypto -ldbghelp -lkernel32 -lgdi32 -lwldap32 -lws2_32'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/travis/build/saucelabs/libsauceconnect/build/sc-build-676/lib'
+libdir='/home/travis/build/saucelabs/libsauceconnect/build/sc-build-776/lib'

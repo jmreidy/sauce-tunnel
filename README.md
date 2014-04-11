@@ -76,3 +76,6 @@ tunnels, and tunnel timeouts. (#3)
 
 ### v2.0.3
 - Updating Sauce Tunnel 4 binaries (@saadtazi)
+
+### v2.0.4
+- Updating to Sauce Connect 4.1

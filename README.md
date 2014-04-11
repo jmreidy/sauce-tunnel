@@ -74,3 +74,5 @@ tunnels, and tunnel timeouts. (#3)
 ### v2.0.2
 - Fixing issue with flaky tunnel creation recognition on Win
 
+### v2.0.3
+- Updating Sauce Tunnel 4 binaries (@saadtazi)

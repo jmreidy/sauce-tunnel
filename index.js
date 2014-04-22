@@ -1,5 +1,5 @@
 /* npm */
-var colors = require('colors');
+var chalk = require('chalk');
 var request = require('request').defaults({jar:false});
 
 /* core */
@@ -114,7 +114,7 @@ SauceTunnel.prototype.start = function(callback) {
   if (!this.tunneled) {
     return callback(true);
   }
-  this.emit('verbose:writeln', "=> Sauce Labs trying to open tunnel".inverse);
+  this.emit('verbose:writeln', chalk.inverse("=> Sauce Labs trying to open tunnel"));
   this.openTunnel(function(status) {
     callback(status);
   });

@@ -79,3 +79,6 @@ tunnels, and tunnel timeouts. (#3)
 
 ### v2.0.4
 - Updating to Sauce Connect 4.1
+
+### v2.0.5
+- Switch to using `chalk` instead of duck punching String.

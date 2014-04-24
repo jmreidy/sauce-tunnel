@@ -46,7 +46,7 @@ To get started easily, here is the code you can copy paste
 
 ```
 var SauceTunnel = require('sauce-tunnel');
-var tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, 'tunnel', true/* ['--debug'] */);
+var tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, 'tunnel', true/* ['--verbose'] */);
 tunnel.start(function(status){
   if (status === false){
     throw new Error('Something went wrong with the tunnel');

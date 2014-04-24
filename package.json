@@ -4,7 +4,7 @@
   "description": "A wrapper around the Sauce Labs tunnel jar",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test/sanity"
   },
   "repository": {
     "type": "git",

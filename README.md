@@ -83,3 +83,6 @@ tunnels, and tunnel timeouts. (#3)
 
 ### v2.0.5
 - Switch to using `chalk` instead of duck punching String.
+
+### v2.0.6
+- Update to SC 4.2

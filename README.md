@@ -86,3 +86,6 @@ tunnels, and tunnel timeouts. (#3)
 
 ### v2.0.6
 - Update to SC 4.2
+
+### v2.1.0
+- Update to SC 4.3

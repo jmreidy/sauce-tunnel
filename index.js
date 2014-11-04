@@ -121,16 +121,19 @@ SauceTunnel.prototype.start = function(callback) {
 };
 
 SauceTunnel.prototype.stop = function(callback) {
-  var killProc = function (err) {
+  this.killTunnel(function(err) {
+    this.kill(callback.bind(this, err));
+  }.bind(this));
+};
+
+SauceTunnel.prototype.kill = function(callback) {
     if (this.proc) {
       this.proc.on('exit', function () {
-        callback(err);
+        callback();
       });
       this.proc.kill();
     }
     else {
-      callback(err);
+      callback();
     }
-  }.bind(this);
-  this.killTunnel(killProc);
 };

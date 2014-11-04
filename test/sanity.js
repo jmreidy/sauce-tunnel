@@ -14,7 +14,11 @@ tunnel.start(function(status){
     console.error('Something went wrong with the tunnel');
     process.exit(1);
   }
-  tunnel.stop(function(){
+  tunnel.stop(function(err){
+    if(err){
+      console.error(err);
+      process.exit(1); 
+    }
     console.log('Tunnel destroyed');
     process.exit(0);
   });

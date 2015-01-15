@@ -1,6 +1,7 @@
 /* npm */
 var chalk = require('chalk');
 var request = require('request').defaults({jar:false});
+var split = require('split');
 
 /* core */
 var util = require('util');
@@ -24,6 +25,7 @@ function SauceTunnel(user, key, identifier, tunneled, extraFlags) {
   this.tunneled = tunneled;
   this.baseUrl = ["https://", this.user, ':', this.key, '@saucelabs.com', '/rest/v1/', this.user].join("");
   this.extraFlags = extraFlags;
+  this.id = null;
 }
 
 util.inherits(SauceTunnel, EventEmitter);
@@ -48,25 +50,25 @@ SauceTunnel.prototype.openTunnel = function(callback) {
   this.proc = proc.spawn(cmd, args);
   callback.called = false;
 
-  var buf = '';
-  this.proc.stdout.on('data', function(d) {
-    var data = typeof d !== 'undefined' ? d.toString() : '';
-    buf += data.replace(/[\r\n]/g, '');
-
-    if (typeof data === 'string' && !data.match(/^\[-u,/g)) {
-      me.emit('verbose:debug', data.replace(/[\n\r]/g, ''));
+  this.proc.stdout.pipe(split()).on('data', function(data) {
+    if (!data.match(/^\[-u,/g)) {
+      me.emit('verbose:debug', data);
     }
-    if (typeof data === 'string' && buf.match(/Sauce Connect is up, you may start your tests/)) {
+    if (data.match(/Sauce Connect is up, you may start your tests/)) {
       me.emit('verbose:ok', '=> Sauce Labs Tunnel established');
       if (!callback.called) {
         callback.called = true;
         callback(true);
       }
     }
+    var match = data.match(/Tunnel ID\: ([a-z0-9]{32})/);
+    if (match) {
+      me.id = match[1];
+    }
   });
 
-  this.proc.stderr.on('data', function(data) {
-    me.emit('log:error', data.toString().replace(/[\n\r]/g, ''));
+  this.proc.stderr.pipe(split()).on('data', function(data) {
+    me.emit('log:error', data);
   });
 
   var self = this;
@@ -96,10 +98,10 @@ SauceTunnel.prototype.killTunnel = function(callback) {
   this.emit('verbose:debug', 'Trying to kill tunnel');
   request({
     method: "DELETE",
-    url: this.baseUrl + "/tunnels/" + this.identifier,
+    url: this.baseUrl + "/tunnels/" + this.id,
     json: true
   }, function (err, resp, body) {
-    if (!err) {
+    if (!err && resp.statusCode === 200) {
       this.emit('verbose:debug', 'Tunnel Closed');
     }
     else {

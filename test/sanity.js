@@ -1,5 +1,16 @@
 var SauceTunnel = require('../index');
-var tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, 'tunnel', true, ['--verbose']);
+
+var tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY);
+if (!tunnel.identifier) {
+  console.error('`tunnel.identifier` should be set to a random variable when not specified in the constructor');
+  process.exit(1);
+}
+if (tunnel.tunneled !== true) {
+  console.error('`tunnel.tunneled` should be set to `true` when not specified in the constructor');
+  process.exit(1);
+}
+
+tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, 'tunnel', true, ['--verbose']);
 tunnel.on('verbose:ok', function () {
   console.log.apply(console, arguments);
 });
@@ -17,7 +28,7 @@ tunnel.start(function(status){
   tunnel.stop(function(err){
     if(err){
       console.error(err);
-      process.exit(1); 
+      process.exit(1);
     }
     console.log('Tunnel destroyed');
     process.exit(0);

@@ -1,5 +1,5 @@
 var SauceTunnel = require('../index');
-var tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY, 'tunnel', true, ['--verbose']);
+var tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, 'tunnel', true, ['--verbose']);
 tunnel.on('verbose:ok', function () {
   console.log.apply(console, arguments);
 });

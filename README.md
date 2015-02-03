@@ -93,3 +93,6 @@ tunnels, and tunnel timeouts. (#3)
 ### v2.1.1
 - Update to SC 4.3.5
 - Expose kill method for immediate kill of process
+
+### v2.1.2
+- Update binaries to SC 4.3.6

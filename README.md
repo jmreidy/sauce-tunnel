@@ -94,5 +94,7 @@ tunnels, and tunnel timeouts. (#3)
 - Update to SC 4.3.5
 - Expose kill method for immediate kill of process
 
-### v2.1.2
+### v2.2.0
 - Update binaries to SC 4.3.6
+- Make tunneled an optional param that defaults to true
+- Fix bug in delete tunnel

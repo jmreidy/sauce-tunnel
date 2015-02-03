@@ -22,7 +22,7 @@ function SauceTunnel(user, key, identifier, tunneled, extraFlags) {
   this.user = user;
   this.key = key;
   this.identifier = identifier || 'Tunnel'+new Date().getTime();
-  this.tunneled = tunneled;
+  this.tunneled = (tunneled == null) ? true : tunneled;
   this.baseUrl = ["https://", this.user, ':', this.key, '@saucelabs.com', '/rest/v1/', this.user].join("");
   this.extraFlags = extraFlags;
   this.id = null;

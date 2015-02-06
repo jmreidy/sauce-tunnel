@@ -12,6 +12,7 @@ var EventEmitter = require('events').EventEmitter;
 var binaries = {
   'darwin': 'sc',
   'linux': 'sc',
+  'linux32': 'sc',
   'win32': 'sc.exe'
 };
 
@@ -34,6 +35,10 @@ SauceTunnel.prototype.openTunnel = function(callback) {
   var me = this;
   // win32, darwin or linux
   var platform = os.platform();
+
+  // Special case: 32bit linux?
+  platform += (platform === 'linux' && os.arch() === 'ia32') ? '32' : '';
+
   var executable = binaries[platform];
   if (!executable) {
     throw new Error(platform + ' platform is not supported');

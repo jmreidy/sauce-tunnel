@@ -127,10 +127,22 @@ SauceTunnel.prototype.start = function(callback) {
   });
 };
 
-SauceTunnel.prototype.stop = function(callback) {
-  this.killTunnel(function(err) {
-    this.kill(callback.bind(this, err));
-  }.bind(this));
+SauceTunnel.prototype.stop = function (callback) {
+  var self = this,
+    callbackArg;
+
+  this.proc.on('exit', function () {
+    callback(callbackArg);
+  });
+
+  this.killTunnel(function (err) {
+    // When deleting the tunnel via the REST API succeeds, then Sauce Connect exits automatically.
+    // Otherwise kill the process. Don't care with the tunnel, it will time out.
+    if (err) {
+      callbackArg = err;
+      self.proc.kill();
+    }
+  });
 };
 
 SauceTunnel.prototype.kill = function(callback) {

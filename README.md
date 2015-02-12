@@ -100,4 +100,7 @@ tunnels, and tunnel timeouts. (#3)
 - Fix bug in delete tunnel
 
 ### v2.2.1
-- Fix race condition from delete tunnel changes
+- Add 32bit binary for Linux
+
+### v2.2.2
+- Fix race condition from delete tunnel fix in 2.2.0

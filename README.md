@@ -98,3 +98,6 @@ tunnels, and tunnel timeouts. (#3)
 - Update binaries to SC 4.3.6
 - Make tunneled an optional param that defaults to true
 - Fix bug in delete tunnel
+
+### v2.2.1
+- Fix race condition from delete tunnel changes

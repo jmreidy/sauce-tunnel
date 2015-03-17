@@ -104,3 +104,7 @@ tunnels, and tunnel timeouts. (#3)
 
 ### v2.2.2
 - Fix race condition from delete tunnel fix in 2.2.0
+
+### v2.2.3
+- Update SC binaries to 4.3.7
+- Update Chalk to 1.0

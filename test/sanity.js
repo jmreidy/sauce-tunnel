@@ -10,7 +10,7 @@ if (tunnel.tunneled !== true) {
   process.exit(1);
 }
 
-tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, 'tunnel', true, ['--verbose']);
+tunnel = new SauceTunnel(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESSKEY, null, true, ['--verbose']);
 tunnel.on('verbose:ok', function () {
   console.log.apply(console, arguments);
 });

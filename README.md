@@ -108,3 +108,6 @@ tunnels, and tunnel timeouts. (#3)
 ### v2.2.3
 - Update SC binaries to 4.3.7
 - Update Chalk to 1.0
+
+### v2.2.4
+- Update SC binaries to 4.3.9

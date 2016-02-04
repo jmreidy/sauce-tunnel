@@ -7,4 +7,4 @@ node_js:
 env:
   global:
   - SAUCE_USERNAME=rzrsharp_oss
-  - secure: ZD6UqM7v7PVX6nLJZeM3VVLs21vVbLdGFdhdq9nq4hHcf+9/ag8/iGwqGc93CeorNhjeTKWcvQf7am0LcJeRWAfOTFHFYkODkF8EDxpNB/ppZWUeAMvGd+bg7iCCFtu+OR4aG5rX9n9NnyaiD00NnDwxswdwi3KqN0dmWW5aJEc=
+  - secure: LLn6txWpS84end3/R6WzC5m0UYKiet3mGUHRFbg3jhV/ffmNA0kYVZIX9eNh2VFTFvM+6kpXuAHeheYLlG+D+yVolVszCgtwuhQStBx3OOiAfMluqPYjlnnnCRuzCTOd6cuLFeMLYbRcLhk3pthEkFySiXb904VgsNy2eF04iO4=

@@ -4,8 +4,7 @@ node_js:
 - '0.12'
 - '4'
 - '5'
-addons:
-  sauce_connect:
-    username: "rzrsharp_oss"
-    access_key:
-      secure: "I1NDD3XOo0Swf4IrkXyyL7H1V+mX3pGN6XZvdvi6+xM8rHtBuokAdpUBH9gr51bbDtKTmBX7XR9AXmr/tBToxsULnDWOXmQV/PpNLCQT7gHFQIoGBqbQkaGt0G0JM6VxXp1urnJv7I0U5gN+yksT87lIIfcHCZA9Bhpw71tFYxk="
+env:
+  global:
+  - SAUCE_USERNAME=rzrsharp_oss
+  - secure: ZD6UqM7v7PVX6nLJZeM3VVLs21vVbLdGFdhdq9nq4hHcf+9/ag8/iGwqGc93CeorNhjeTKWcvQf7am0LcJeRWAfOTFHFYkODkF8EDxpNB/ppZWUeAMvGd+bg7iCCFtu+OR4aG5rX9n9NnyaiD00NnDwxswdwi3KqN0dmWW5aJEc=

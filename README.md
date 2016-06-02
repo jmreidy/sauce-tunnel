@@ -118,3 +118,7 @@ tunnels, and tunnel timeouts. (#3)
 ### v2.4.0
 - Update SC binaries to 4.3.13
 - Update Node dependencies to latest
+
+### v2.5.0
+- Update SC binaries to 4.3.16
+- Update Node dependencies to latest

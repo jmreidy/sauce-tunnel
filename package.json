@@ -1,6 +1,6 @@
 {
   "name": "sauce-tunnel",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "A wrapper around the Sauce Labs tunnel jar",
   "main": "index.js",
   "scripts": {

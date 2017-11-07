@@ -66,6 +66,10 @@ SauceTunnel.prototype.openTunnel = function(callback) {
         callback(true);
       }
     }
+    if (data.match(/Sauce Connect could not establish a connection/)) {
+      me.emit('log:error', 'Establishing a connection failed.');
+      process.exit()
+    }
     var match = data.match(/Tunnel ID\: ([a-z0-9]{32})/);
     if (match) {
       me.id = match[1];

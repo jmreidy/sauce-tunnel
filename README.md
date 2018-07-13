@@ -14,6 +14,9 @@ grunt-saucelabs,
 [grunt-mocha-webdriver](https://github.com/grunt-mocha-webdriver), and any
 future Node module that may need it.
 
+This code uses [Sauce-Connect](https://wiki.saucelabs.com/display/DOCS/_sauce_connect_download) to communicate
+with Sauce Labs.
+
 ## Usage
 Before starting the tunnel, initialize it first
 
